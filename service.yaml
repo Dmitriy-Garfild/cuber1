@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netology-web
+  labels:
+    app: netology-web
+    comment: mysecondpod
+    company: netology
+    stage: study
+  namespace: default
+spec:
+  containers:
+    - name: enetology-web
+      image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "1000m"
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+      ports:
+        - name: http
+          containerPort: 8080
+        - name: https
+          containerPort: 8443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netology-svc
+spec:
+  selector:
+    app: netology-web
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+    - name: https
+      port: 8443
+      targetPort: 8443
+...
