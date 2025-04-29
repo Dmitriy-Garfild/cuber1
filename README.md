@@ -35,7 +35,7 @@
 
 4. [Скриншот 1](image_1.jpg)
    ```sh
-   kubectl port-forward --address=0.0.0.0 pods/echoserver 8080 8443
+   kubectl port-forward --address=0.0.0.0 pods/hello-world 8080 8443
 
 
 3. [service.yaml](service.yaml)
